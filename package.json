@@ -1,0 +1,14 @@
+{
+  "name": "express-lambda-serverless",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "serverless deploy"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "serverless-http": "^1.9.0"
+  }
+}
