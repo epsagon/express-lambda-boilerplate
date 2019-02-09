@@ -4,37 +4,18 @@ const cors = require('cors');
 const apiRouter = require('./api');
 const errorHandler = require('./helpers/errorHandler');
 
-class Server {
-  constructor() {
-    this.server = express();
+const server = express();
 
-    this.initialize();
-  }
+server.use(cors());
+server.use(express.urlencoded({ extended: true, strict: false }));
+server.use(express.json());
 
-  setMiddlewares() {
-    this.server.use(cors());
-    this.server.use(express.urlencoded({extended: true, strict: false}))
-    this.server.use(express.json());
-  }
+server.get('/', (req, res) => {
+  res.json({ message: 'Express API Powered by AWS Lambda!' });
+});
 
-  setRoutes() {
-    this.server.get('/', (req, res) => {
-      res.send('Express API Powered by AWS Lambda!');
-    });
+server.use('/v1/api', apiRouter);
+server.use(errorHandler.notFound);
+server.use(errorHandler.internalServerError);
 
-    this.server.use('/v1/api', apiRouter);
-  }
-
-  catchErrors() {
-    this.server.use(errorHandler.notFound);
-    this.server.use(errorHandler.internalServerError);
-  }
-
-  initialize() {
-    this.setMiddlewares();
-    this.setRoutes();
-    this.catchErrors();
-  }
-}
-
-module.exports = new Server().server;
+module.exports = server;

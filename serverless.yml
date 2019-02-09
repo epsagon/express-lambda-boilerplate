@@ -1,4 +1,4 @@
-service: expressAPI
+service: expressAPI-epsagon
 
 provider:
   name: aws
