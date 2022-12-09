@@ -9,7 +9,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "epsagon": "^1.11.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "serverless-http": "^1.9.0"
   }
 }
